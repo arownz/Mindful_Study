@@ -43,8 +43,11 @@ class PerformanceAnalyticsScreen extends ConsumerWidget {
                           color: AppColors.surfaceContainerLow,
                           borderRadius: BorderRadius.circular(999),
                         ),
-                        child: const Icon(Icons.arrow_back_ios_new,
-                            size: 16, color: AppColors.onSurfaceVariant),
+                        child: const Icon(
+                          Icons.arrow_back_ios_new,
+                          size: 16,
+                          color: AppColors.onSurfaceVariant,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 16),
@@ -65,7 +68,8 @@ class PerformanceAnalyticsScreen extends ConsumerWidget {
                   final week = summary?['week'] as Map<String, dynamic>?;
                   final month = summary?['month'] as Map<String, dynamic>?;
                   final streak = summary?['streak'] as Map<String, dynamic>?;
-                  final totalMinMonth = month?['total_minutes'] as int? ?? 42 * 60;
+                  final totalMinMonth =
+                      month?['total_minutes'] as int? ?? 42 * 60;
                   final avgMood = week?['avg_mood'] as num?;
                   final sessions = week?['session_count'] as int? ?? 68;
                   final best = streak?['longest'] as int? ?? 12;
@@ -88,7 +92,9 @@ class PerformanceAnalyticsScreen extends ConsumerWidget {
                           Expanded(
                             child: _SummaryCard(
                               label: 'Avg. Mood',
-                              value: avgMood != null ? '😊 ${avgMood.toStringAsFixed(1)}' : '😊 4.2',
+                              value: avgMood != null
+                                  ? '😊 ${avgMood.toStringAsFixed(1)}'
+                                  : '😊 4.2',
                               sub: 'This week',
                               color: AppColors.secondaryContainer,
                               textColor: AppColors.onSecondaryContainer,
@@ -133,7 +139,7 @@ class PerformanceAnalyticsScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 32),
               Text(
-                'Study Hours This Week',
+                'Study Hours This Weesddsk',
                 style: GoogleFonts.manrope(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
@@ -201,13 +207,29 @@ class PerformanceAnalyticsScreen extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              _SubjectRow(subject: 'Mathematics', hours: 18, color: AppColors.primary),
+              _SubjectRow(
+                subject: 'Mathematics',
+                hours: 18,
+                color: AppColors.primary,
+              ),
               const SizedBox(height: 8),
-              _SubjectRow(subject: 'Physics', hours: 12, color: AppColors.secondary),
+              _SubjectRow(
+                subject: 'Physics',
+                hours: 12,
+                color: AppColors.secondary,
+              ),
               const SizedBox(height: 8),
-              _SubjectRow(subject: 'Literature', hours: 8, color: AppColors.tertiary),
+              _SubjectRow(
+                subject: 'Literature',
+                hours: 8,
+                color: AppColors.tertiary,
+              ),
               const SizedBox(height: 8),
-              _SubjectRow(subject: 'Chemistry', hours: 4, color: AppColors.outlineVariant),
+              _SubjectRow(
+                subject: 'Chemistry',
+                hours: 4,
+                color: AppColors.outlineVariant,
+              ),
               const SizedBox(height: 32),
             ],
           ),
@@ -242,7 +264,10 @@ class _SummaryCard extends StatelessWidget {
         children: [
           Text(
             label,
-            style: GoogleFonts.inter(fontSize: 11, color: AppColors.onSurfaceVariant),
+            style: GoogleFonts.inter(
+              fontSize: 11,
+              color: AppColors.onSurfaceVariant,
+            ),
           ),
           const SizedBox(height: 4),
           Text(
@@ -275,7 +300,10 @@ class _Bar extends StatelessWidget {
       children: [
         Text(
           hours > 0 ? '${hours.toStringAsFixed(0)}h' : '',
-          style: GoogleFonts.inter(fontSize: 10, color: AppColors.onSurfaceVariant),
+          style: GoogleFonts.inter(
+            fontSize: 10,
+            color: AppColors.onSurfaceVariant,
+          ),
         ),
         const SizedBox(height: 4),
         Container(
@@ -287,7 +315,13 @@ class _Bar extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 4),
-        Text(label, style: GoogleFonts.inter(fontSize: 11, color: AppColors.onSurfaceVariant)),
+        Text(
+          label,
+          style: GoogleFonts.inter(
+            fontSize: 11,
+            color: AppColors.onSurfaceVariant,
+          ),
+        ),
       ],
     );
   }
@@ -298,7 +332,11 @@ class _MoodRow extends StatelessWidget {
   final double percent;
   final int sessions;
 
-  const _MoodRow({required this.mood, required this.percent, required this.sessions});
+  const _MoodRow({
+    required this.mood,
+    required this.percent,
+    required this.sessions,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -306,7 +344,10 @@ class _MoodRow extends StatelessWidget {
       children: [
         SizedBox(
           width: 100,
-          child: Text(mood, style: GoogleFonts.inter(fontSize: 13, color: AppColors.onSurface)),
+          child: Text(
+            mood,
+            style: GoogleFonts.inter(fontSize: 13, color: AppColors.onSurface),
+          ),
         ),
         Expanded(
           child: ClipRRect(
@@ -334,7 +375,11 @@ class _SubjectRow extends StatelessWidget {
   final double hours;
   final Color color;
 
-  const _SubjectRow({required this.subject, required this.hours, required this.color});
+  const _SubjectRow({
+    required this.subject,
+    required this.hours,
+    required this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -355,7 +400,10 @@ class _SubjectRow extends StatelessWidget {
           Expanded(
             child: Text(
               subject,
-              style: GoogleFonts.inter(fontSize: 14, color: AppColors.onSurface),
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                color: AppColors.onSurface,
+              ),
             ),
           ),
           Text(

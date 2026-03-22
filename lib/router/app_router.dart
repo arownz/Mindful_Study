@@ -7,6 +7,7 @@ import '../screens/auth_screen.dart';
 import '../screens/focus_timer_screen.dart';
 import '../screens/mood_checkin_screen.dart';
 import '../screens/performance_analytics_screen.dart';
+import '../screens/profile_info_screen.dart';
 import '../screens/study_dashboard_screen.dart';
 import '../shell/main_shell.dart';
 
@@ -39,6 +40,10 @@ GoRouter createAppRouter(Listenable? refreshListenable) {
         path: '/mood',
         builder: (context, state) => const MoodCheckInScreen(),
       ),
+      GoRoute(
+        path: '/profile',
+        builder: (context, state) => const ProfileInfoScreen(),
+      ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return MainShell(navigationShell: navigationShell);
@@ -70,6 +75,16 @@ GoRouter createAppRouter(Listenable? refreshListenable) {
                 path: '/analytics',
                 pageBuilder: (context, state) => const NoTransitionPage<void>(
                   child: PerformanceAnalyticsScreen(embeddedInShell: true),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/profile',
+                pageBuilder: (context, state) => const NoTransitionPage<void>(
+                  child: ProfileInfoScreen(),
                 ),
               ),
             ],

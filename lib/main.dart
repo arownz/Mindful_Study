@@ -22,7 +22,9 @@ Future<void> main() async {
   }
   GoRouterRefreshStream? refresh;
   if (supabaseEnabled) {
-    refresh = GoRouterRefreshStream(Supabase.instance.client.auth.onAuthStateChange);
+    refresh = GoRouterRefreshStream(
+      Supabase.instance.client.auth.onAuthStateChange,
+    );
   }
   _appRouter = createAppRouter(refresh);
   runApp(const ProviderScope(child: IStudyBuddyApp()));
@@ -34,7 +36,7 @@ class IStudyBuddyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'I Study Buddy',
+      title: 'Mindful Study',
       debugShowCheckedModeBanner: false,
       theme: buildAppTheme(),
       routerConfig: _appRouter,

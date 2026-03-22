@@ -36,7 +36,13 @@ class StudyDashboardScreen extends ConsumerWidget {
   }
 
   static String _titleForMood(Map<String, dynamic>? plan) {
-    const titles = ['Feeling Low', 'Feeling Okay', 'Feeling Good', 'Feeling Great', 'Feeling Amazing'];
+    const titles = [
+      'Feeling Low',
+      'Feeling Okay',
+      'Feeling Good',
+      'Feeling Great',
+      'Feeling Amazing',
+    ];
     final mi = plan?['mood_index'];
     if (mi is! int) return 'Feeling Great';
     return titles[mi.clamp(0, 4)];
@@ -90,8 +96,13 @@ class StudyDashboardScreen extends ConsumerWidget {
                       color: AppColors.surfaceContainerLow,
                       borderRadius: BorderRadius.circular(999),
                     ),
-                    child: const Icon(Icons.person_outline,
-                        color: AppColors.onSurfaceVariant),
+                    child: IconButton(
+                      onPressed: () => context.go('/profile'),
+                      icon: const Icon(
+                        Icons.person_outline,
+                      ),
+                      color: AppColors.onSurfaceVariant,
+                    ),
                   ),
                 ],
               ),
@@ -105,7 +116,10 @@ class StudyDashboardScreen extends ConsumerWidget {
                 ),
                 child: Row(
                   children: [
-                    Text(_emojiForMood(plan), style: const TextStyle(fontSize: 32)),
+                    Text(
+                      _emojiForMood(plan),
+                      style: const TextStyle(fontSize: 32),
+                    ),
                     const SizedBox(width: 16),
                     Expanded(
                       child: Column(
@@ -173,16 +187,24 @@ class StudyDashboardScreen extends ConsumerWidget {
                   final subject = b['subject']?.toString() ?? 'Subject';
                   final topic = b['topic']?.toString() ?? '';
                   final minutes = b['minutes'];
-                  final dur = minutes is int ? '$minutes min' : '${minutes ?? 25} min';
+                  final dur = minutes is int
+                      ? '$minutes min'
+                      : '${minutes ?? 25} min';
                   final isCurrent = b['is_current'] == true;
                   return Padding(
-                    padding: EdgeInsets.only(bottom: i == blocks.length - 1 ? 0 : 8),
+                    padding: EdgeInsets.only(
+                      bottom: i == blocks.length - 1 ? 0 : 8,
+                    ),
                     child: _SubjectCard(
                       subject: subject,
                       topic: topic,
                       duration: dur,
-                      color: isCurrent ? AppColors.primaryContainer : AppColors.surfaceContainerLow,
-                      textColor: isCurrent ? AppColors.onPrimaryContainer : AppColors.onSurface,
+                      color: isCurrent
+                          ? AppColors.primaryContainer
+                          : AppColors.surfaceContainerLow,
+                      textColor: isCurrent
+                          ? AppColors.onPrimaryContainer
+                          : AppColors.onSurface,
                       isCurrent: isCurrent,
                     ),
                   );
@@ -214,11 +236,13 @@ class StudyDashboardScreen extends ConsumerWidget {
                 children: ['M', 'T', 'W', 'T', 'F', 'S', 'S']
                     .asMap()
                     .entries
-                    .map((e) => _DayBar(
-                          label: e.value,
-                          height: [0.4, 0.7, 0.9, 0.5, 0.8, 0.3, 0.0][e.key],
-                          isToday: e.key == 0,
-                        ))
+                    .map(
+                      (e) => _DayBar(
+                        label: e.value,
+                        height: [0.4, 0.7, 0.9, 0.5, 0.8, 0.3, 0.0][e.key],
+                        isToday: e.key == 0,
+                      ),
+                    )
                     .toList(),
               ),
               const SizedBox(height: 32),
@@ -277,7 +301,9 @@ class _SubjectCard extends StatelessWidget {
                       const SizedBox(width: 8),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 2),
+                          horizontal: 8,
+                          vertical: 2,
+                        ),
                         decoration: BoxDecoration(
                           color: AppColors.primary,
                           borderRadius: BorderRadius.circular(999),
@@ -324,7 +350,11 @@ class _DayBar extends StatelessWidget {
   final double height;
   final bool isToday;
 
-  const _DayBar({required this.label, required this.height, this.isToday = false});
+  const _DayBar({
+    required this.label,
+    required this.height,
+    this.isToday = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -340,7 +370,9 @@ class _DayBar extends StatelessWidget {
               width: 20,
               height: height * 60,
               decoration: BoxDecoration(
-                color: isToday ? AppColors.primary : AppColors.surfaceContainerHighest,
+                color: isToday
+                    ? AppColors.primary
+                    : AppColors.surfaceContainerHighest,
                 borderRadius: BorderRadius.circular(6),
               ),
             ),

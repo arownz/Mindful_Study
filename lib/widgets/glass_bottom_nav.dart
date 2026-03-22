@@ -24,7 +24,9 @@ class GlassBottomNav extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColors.surface.withValues(alpha: 0.82),
             border: Border(
-              top: BorderSide(color: AppColors.outlineVariant.withValues(alpha: 0.15)),
+              top: BorderSide(
+                color: AppColors.outlineVariant.withValues(alpha: 0.15),
+              ),
             ),
           ),
           child: Row(
@@ -47,6 +49,12 @@ class GlassBottomNav extends StatelessWidget {
                 label: 'Analytics',
                 selected: currentIndex == 2,
                 onTap: () => onTap(2),
+              ),
+              _NavItem(
+                icon: Icons.person_outlined,
+                label: 'Profile',
+                selected: currentIndex == 3,
+                onTap: () => onTap(3),
               ),
             ],
           ),
